@@ -186,7 +186,8 @@ function generatePassword(){
         let randomIndex = getRandomInteger(0, checkedCbArray.length);
         password += checkedCbArray[randomIndex]();
     }
-
+    
+    // copy the password to clipboard
     async function copyContent() {
         try {
             await navigator.clipboard.writeText(passwordDisplay.value);
@@ -209,6 +210,7 @@ function generatePassword(){
     passwordDisplay.value = password;
     console.log('password :', password);
     
+    // copy password to clipboard by clicking button
     copyBtn.addEventListener('click', () => {
         if(passwordDisplay.value)
             copyContent();
