@@ -187,11 +187,32 @@ function generatePassword(){
         password += checkedCbArray[randomIndex]();
     }
 
+    async function copyContent() {
+        try {
+            await navigator.clipboard.writeText(passwordDisplay.value);
+            copyMsg.innerText = "copied";
+        }
+        catch(e) {
+            copyMsg.innerText = "Failed";
+        }
+       
+        copyMsg.classList.add("active");
+    
+        setTimeout( () => {
+            copyMsg.classList.remove("active");
+        },2000);
+    
+    }
+
     // shuffle the newly created pass.
     password = shuffleArray(Array.from(password));
     passwordDisplay.value = password;
     console.log('password :', password);
-
+    
+    copyBtn.addEventListener('click', () => {
+        if(passwordDisplay.value)
+            copyContent();
+    })
 
     
 }
